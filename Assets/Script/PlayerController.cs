@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
         {
-            float jumpPower = 4.0f;
+            float jumpPower = 10.0f;
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpPower);
             isGrounded = false; // ジャンプしたら一旦離れる
         }
