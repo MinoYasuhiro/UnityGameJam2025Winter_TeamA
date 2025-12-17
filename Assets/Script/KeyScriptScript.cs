@@ -5,6 +5,7 @@ using UnityEngine;
 public class KeyScriptScript : MonoBehaviour
 {
     Vector3 Position;
+    public Transform target;
     // プレイヤーが触れたときに呼ばれる関数（トリガー判定）
     void OnTriggerEnter(Collider other)
     {
@@ -15,17 +16,8 @@ public class KeyScriptScript : MonoBehaviour
                                     // TODO: アイテム取得処理やエフェクト再生処理などをここに書く
 
 
-            this.transform.position = new Vector3(8.4f, -1.98f, -0.04f);
-            if (other.CompareTag("Untagged"))
-            {
-                Debug.Log("ロック解除！"); // ログを表示
-                                     // TODO: アイテム取得処理やエフェクト再生処理などをここに書く
-
-
-                //アイテムを消す
-               // Destroy(this.gameObject);
-            }
-
+            //this.transform.position = new Vector3(8.4f, -1.98f, -0.04f);
+            this.transform.position = target.position;
         }
     }
 
