@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -100,10 +100,16 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
-        // 地面に触れているかを判定（"Ground" タグを使うと便利）
-        if (collision.gameObject.CompareTag("Ground"))
+        if (!collision.gameObject.CompareTag("Ground")) return;
+
+        foreach (ContactPoint contact in collision.contacts)
         {
-            isGrounded = true;
+            // 接触面の法線が上向きなら「地面」
+            if (contact.normal.y > 0.5f)
+            {
+                isGrounded = true;
+                return;
+            }
         }
     }
 
