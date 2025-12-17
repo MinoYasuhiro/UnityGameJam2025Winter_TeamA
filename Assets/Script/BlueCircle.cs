@@ -17,10 +17,12 @@ public class BlueCircle : MonoBehaviour
     {
         while (true)
         {
+            //青色の円が現れている時間
             state = LightState.On;
             mesh.enabled = true;
             yield return new WaitForSeconds(5f);
 
+            //青色の円が点滅している時間
             state = LightState.Blinking;
             float t = 0f;
             while(t<3f)
@@ -30,15 +32,11 @@ public class BlueCircle : MonoBehaviour
                 t += 0.2f;
             }
 
+            //青色の円が消えている時間
             state = LightState.Off;
             mesh.enabled = false;
             yield return new WaitForSeconds(3f);
         }
-    }
-
-    public bool IsDanger()
-    {
-        return state == LightState.Off;
     }
 
     // Update is called once per frame

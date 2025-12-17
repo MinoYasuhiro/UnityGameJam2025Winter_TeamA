@@ -17,19 +17,22 @@ public class RedCircle : MonoBehaviour
     {
         while (true)
         {
+            //赤色の円が消えている時間
             state = LightState.Off;
             mesh.enabled = false;
             yield return new WaitForSeconds(8f);
 
+            //赤色の円が現れている時間
             state = LightState.On;
             mesh.enabled = true;
             yield return new WaitForSeconds(3f);
         }
     }
 
+    //赤色の円が現れているときに危険と判断する
     public bool IsDanger()
     {
-        return state == LightState.Off;
+        return state == LightState.On;
     }
 
     // Update is called once per frame
