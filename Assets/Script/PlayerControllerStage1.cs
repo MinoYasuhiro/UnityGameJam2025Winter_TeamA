@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerControllerStage1 : MonoBehaviour
 {
     // オブジェクト・コンポーネント参照
-    private Rigidbody rigidbody;
+    private Rigidbody rb;
     private SpriteRenderer spriteRenderer;
 
     // 移動関連変数
@@ -18,7 +18,7 @@ public class PlayerControllerStage1 : MonoBehaviour
     void Start()
     {
         // コンポーネント参照取得
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         // 変数初期化
@@ -78,7 +78,7 @@ public class PlayerControllerStage1 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
         {
             float jumpPower = 10.0f;
-            rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpPower);
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             isGrounded = false; // ジャンプしたら一旦離れる
         }
     }
@@ -88,12 +88,12 @@ public class PlayerControllerStage1 : MonoBehaviour
     private void FixedUpdate()
     {
         // 移動速度ベクトルを現在値から取得
-        Vector2 velocity = rigidbody.velocity;
+        Vector2 velocity = rb.velocity;
         // X方向の速度を入力から決定
         velocity.x = xSpeed;
 
         // 計算した移動速度ベクトルをRigidbodyに反映
-        rigidbody.velocity = velocity;
+        rb.velocity = velocity;
     }
 
     private bool isGrounded = false;
