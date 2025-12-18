@@ -29,12 +29,10 @@ public class RedCircle : MonoBehaviour
         }
     }
 
-    //赤色の円が現れているときに危険と判断する
     public bool IsDanger()
     {
         return state == LightState.On;
     }
-
     // Update is called once per frame
     //void Update()
     //{
