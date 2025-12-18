@@ -10,7 +10,7 @@ public class KeyScriptScript : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         // 触れたオブジェクトに "Player" タグが付いているかチェック
-        if (other.CompareTag("Untagged"))
+        if (other.CompareTag("Player"))
         {
             Debug.Log("アイテムに触れた！"); // ログを表示
                                     // TODO: アイテム取得処理やエフェクト再生処理などをここに書く
@@ -18,6 +18,8 @@ public class KeyScriptScript : MonoBehaviour
 
             //this.transform.position = new Vector3(8.4f, -1.98f, -0.04f);
             this.transform.position = target.position;
+            Vector3 currentPosition = transform.position;
+            transform.position = new Vector3(currentPosition.x, currentPosition.y, 1.0f);
         }
     }
 

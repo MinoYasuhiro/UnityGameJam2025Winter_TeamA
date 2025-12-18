@@ -1,30 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class DoorScript : MonoBehaviour
+public class UnlockDoorScript : MonoBehaviour
 {
     Vector3 Position;
     public Transform target;
+
+    [SerializeField] private string sceneName;
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Untagged"))
         {
-            Debug.Log("ロック解除！"); // ログを表示
-                                 // TODO: アイテム取得処理やエフェクト再生処理などをここに書く
-
-
-            //アイテムを消す
             this.transform.position = target.position;
             Vector3 currentPosition = transform.position;
-            transform.position = new Vector3(currentPosition.x, currentPosition.y, 0.3f);
+            transform.position = new Vector3(currentPosition.x, currentPosition.y, 0.29f);
+        }
+
+        if (other.CompareTag("Player"))
+        {
+            SceneManager.LoadScene(sceneName); // 指定したシーン名でロード
         }
     }
-
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
