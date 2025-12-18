@@ -19,7 +19,7 @@ public class KeyScriptScript : MonoBehaviour
             //this.transform.position = new Vector3(8.4f, -1.98f, -0.04f);
             this.transform.position = target.position;
             Vector3 currentPosition = transform.position;
-            transform.position = new Vector3(currentPosition.x, currentPosition.y, 1.0f);
+            transform.position = new Vector3(currentPosition.x, currentPosition.y, 0.5f);
         }
     }
 
