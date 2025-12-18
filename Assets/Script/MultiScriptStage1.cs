@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// プレイヤー操作・制御クラス
 /// </summary>
-public class MultiScript : MonoBehaviour
+public class MultiScriptStage1 : MonoBehaviour
 {
     // オブジェクト・コンポーネント参照
     private Rigidbody rigidbody;
@@ -127,4 +127,22 @@ public class MultiScript : MonoBehaviour
         }
     }
 
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Bomb"))
+        {
+            OnTriggerBom();
+        }
+    }
+
+    void OnTriggerBom()//爆弾を踏んだ時
+    {
+        Teleport();
+    }
+
+    void Teleport()
+    {
+        transform.position = new Vector3(-10, -2, 0);
+    }
 }

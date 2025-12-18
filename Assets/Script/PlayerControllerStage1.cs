@@ -100,11 +100,16 @@ public class PlayerControllerStage1 : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Ground")) return;
+        // 地面 or プレイヤー以外は無視
+        if (!collision.gameObject.CompareTag("Ground") &&
+            !collision.gameObject.CompareTag("Player"))
+        {
+            return;
+        }
 
         foreach (ContactPoint contact in collision.contacts)
         {
-            // 接触面の法線が上向きなら「地面」
+            // 接触面の法線が上向きなら「上に乗っている」
             if (contact.normal.y > 0.5f)
             {
                 isGrounded = true;
@@ -115,7 +120,8 @@ public class PlayerControllerStage1 : MonoBehaviour
 
     void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") ||
+            collision.gameObject.CompareTag("Player"))
         {
             isGrounded = false;
         }
