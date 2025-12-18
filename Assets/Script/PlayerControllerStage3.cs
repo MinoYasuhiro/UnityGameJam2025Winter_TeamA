@@ -107,7 +107,10 @@ public class PlayerController3 : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Ground")) return;
+        if (!collision.gameObject.CompareTag("Ground")&& !collision.gameObject.CompareTag("Player"))
+        {
+            return;
+        }
 
         foreach (ContactPoint contact in collision.contacts)
         {
@@ -122,7 +125,7 @@ public class PlayerController3 : MonoBehaviour
 
     void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground")|| !collision.gameObject.CompareTag("Player"))
         {
             isGrounded = false;
         }
@@ -145,5 +148,18 @@ public class PlayerController3 : MonoBehaviour
     {
         rigidbody.velocity = Vector3.zero;
         transform.position = startPosition;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Bomb"))
+        {
+            OnTriggerBom();
+        }
+    }
+
+    void OnTriggerBom()//爆弾を踏んだ時
+    {
+        ResetPosition();
     }
 }
