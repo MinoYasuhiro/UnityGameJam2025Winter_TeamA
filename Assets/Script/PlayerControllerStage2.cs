@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// プレイヤー操作・制御クラス
-/// </summary>
-public class MultiScript : MonoBehaviour
+public class PlayerCountrollerStage2 : MonoBehaviour
 {
+
     // オブジェクト・コンポーネント参照
     private Rigidbody rigidbody;
     private SpriteRenderer spriteRenderer;
@@ -41,7 +40,7 @@ public class MultiScript : MonoBehaviour
     private void MoveUpdate()
     {
         // X方向移動入力
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.RightArrow))
         {// 右方向の移動入力
          // X方向移動速度をプラスに設定
             xSpeed = 3.0f;
@@ -52,7 +51,7 @@ public class MultiScript : MonoBehaviour
             // スプライトを通常の向きで表示
             spriteRenderer.flipX = false;
         }
-        else if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.LeftArrow))
         {// 左方向の移動入力
          // X方向移動速度をマイナスに設定
             xSpeed = -3.0f;
@@ -75,7 +74,7 @@ public class MultiScript : MonoBehaviour
 	/// </summary>
 	private void JumpUpdate()
     {
-        if (Input.GetKey(KeyCode.W) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
         {
             float jumpPower = 10.0f;
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpPower);
@@ -121,13 +120,7 @@ public class MultiScript : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Bomb"))
-        {
-            OnTriggerBom();
-        }
-    }
+
 
     void OnTriggerBom()//爆弾を踏んだ時
     {
