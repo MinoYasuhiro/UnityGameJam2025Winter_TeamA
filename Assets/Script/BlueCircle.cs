@@ -4,39 +4,30 @@ using UnityEngine;
 
 public class BlueCircle : MonoBehaviour
 {
-    public LightState state = LightState.Blinking;
+    public LightState state { get; private set; }
     MeshRenderer mesh;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         mesh = GetComponent<MeshRenderer>();
-        StartCoroutine(StateControl());
     }
 
-    IEnumerator StateControl()
+    public void SetOn()
     {
-        while (true)
-        {
-            //青色の円が現れている時間
-            state = LightState.On;
-            mesh.enabled = true;
-            yield return new WaitForSeconds(5f);
+        state = LightState.On;
+        mesh.enabled = true;
+    }
 
-            //青色の円が点滅している時間
-            state = LightState.Blinking;
-            float t = 0f;
-            while(t<3f)
-            {
-                mesh.enabled = !mesh.enabled;
-                yield return new WaitForSeconds(0.2f);
-                t += 0.2f;
-            }
+    public void SetOff()
+    {
+        state = LightState.Off;
+        mesh.enabled = false;
+    }
 
-            //青色の円が消えている時間
-            state = LightState.Off;
-            mesh.enabled = false;
-            yield return new WaitForSeconds(3f);
-        }
+    public void SetBlink(bool visible)
+    {
+        state = LightState.Blinking;
+        mesh.enabled = visible;
     }
 
     // Update is called once per frame

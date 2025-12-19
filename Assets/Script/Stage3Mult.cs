@@ -85,7 +85,7 @@ public class Stage3Mult : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W) && isGrounded)
         {
-            float jumpPower = 10.0f;
+            float jumpPower = 9.4f;
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpPower);
             isGrounded = false; // ジャンプしたら一旦離れる
         }

@@ -4,29 +4,24 @@ using UnityEngine;
 
 public class RedCircle : MonoBehaviour
 {
-    public LightState state = LightState.Blinking;
+    public LightState state { get; private set; }
     MeshRenderer mesh;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         mesh = GetComponent<MeshRenderer>();
-        StartCoroutine(StateControl());
     }
 
-    IEnumerator StateControl()
+    public void SetOn()
     {
-        while (true)
-        {
-            //赤色の円が消えている時間
-            state = LightState.Off;
-            mesh.enabled = false;
-            yield return new WaitForSeconds(8f);
+        state = LightState.On;
+        mesh.enabled = true;
+    }
 
-            //赤色の円が現れている時間
-            state = LightState.On;
-            mesh.enabled = true;
-            yield return new WaitForSeconds(3f);
-        }
+    public void SetOff()
+    {
+        state = LightState.Off;
+        mesh.enabled = false;
     }
 
     public bool IsDanger()
