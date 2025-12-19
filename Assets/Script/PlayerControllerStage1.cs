@@ -13,6 +13,7 @@ public class PlayerControllerStage1 : MonoBehaviour
     private bool isDead = false;
     [SerializeField] private string _loadScene;
     public int _delay; //遅延させたい秒数
+    [SerializeField] private GameObject bombEffectPrefab;
 
     // 移動関連変数
     [HideInInspector] public float xSpeed; // X方向移動速度
@@ -151,9 +152,9 @@ public class PlayerControllerStage1 : MonoBehaviour
         }
     }
 
-    void OnTriggerBom()//爆弾を踏んだ時
+    void OnTriggerBom() // 爆弾を踏んだ時
     {
-        //Teleport();
+        PlayBombEffect();
         Death();
     }
 
@@ -177,12 +178,26 @@ public class PlayerControllerStage1 : MonoBehaviour
 
     }
 
+    void PlayBombEffect()
+    {
+        if (bombEffectPrefab == null)
+        {
+            Debug.LogError("爆弾エフェクトPrefabが設定されていません！");
+            return;
+        }
 
-    
+        // プレイヤーの足元 or 少し下に出す
+        Vector3 effectPos = transform.position;
+        effectPos.y -= 0.5f;
+
+        Instantiate(bombEffectPrefab, effectPos, Quaternion.identity);
+    }
 
 
 
-   
+
+
+
 
     public void TimeLag()
     {
