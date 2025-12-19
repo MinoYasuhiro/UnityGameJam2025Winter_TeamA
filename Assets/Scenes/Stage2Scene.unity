@@ -929,7 +929,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2288076489692206365, guid: f13079d9ef8abf1479fe348c3092181a, type: 3}
       propertyPath: m_Constraints
-      value: 112
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 2288076489692206365, guid: f13079d9ef8abf1479fe348c3092181a, type: 3}
       propertyPath: m_IsKinematic
