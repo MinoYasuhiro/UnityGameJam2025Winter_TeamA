@@ -7,6 +7,7 @@ public class UnlockDoorScript : MonoBehaviour
 {
     Vector3 Position;
     public Transform target;
+    int PlayerCount = 0;
 
     [SerializeField] private string sceneName;
 
@@ -21,7 +22,29 @@ public class UnlockDoorScript : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
+            PlayerCount += 1;
+        }
+       
+
+        if (PlayerCount == 2)
+        {
             SceneManager.LoadScene(sceneName); // 指定したシーン名でロード
+        }
+        if(PlayerCount <= 0)
+        {
+            PlayerCount = 0;
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            PlayerCount--;
+
+            if (PlayerCount < 0)
+            {
+                PlayerCount = 0;
+            }
         }
     }
     // Start is called before the first frame update
