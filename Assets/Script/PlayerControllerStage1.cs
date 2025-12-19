@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// プレイヤー操作・制御クラス
@@ -9,10 +10,15 @@ public class PlayerControllerStage1 : MonoBehaviour
     // オブジェクト・コンポーネント参照
     private Rigidbody rb;
     private SpriteRenderer spriteRenderer;
+    private bool isDead = false;
+    [SerializeField] private string _loadScene;
+    public int _delay; //遅延させたい秒数
 
     // 移動関連変数
     [HideInInspector] public float xSpeed; // X方向移動速度
     [HideInInspector] public bool rightFacing; // 向いている方向(true.右向き false:左向き)
+    
+        
 
     // Start（オブジェクト有効化時に1度実行）
     void Start()
@@ -28,6 +34,11 @@ public class PlayerControllerStage1 : MonoBehaviour
     // Update（1フレームごとに1度ずつ実行）
     void Update()
     {
+
+        if(isDead)
+        {
+            return;
+        }
         // 左右移動処理
         MoveUpdate();
 
@@ -87,8 +98,13 @@ public class PlayerControllerStage1 : MonoBehaviour
     // FixedUpdate（一定時間ごとに1度ずつ実行・物理演算用）
     private void FixedUpdate()
     {
-        // 移動速度ベクトルを現在値から取得
-        Vector2 velocity = rb.velocity;
+          if(isDead)
+        {
+            return;
+        }
+
+            // 移動速度ベクトルを現在値から取得
+            Vector2 velocity = rb.velocity;
         // X方向の速度を入力から決定
         velocity.x = xSpeed;
 
@@ -137,11 +153,44 @@ public class PlayerControllerStage1 : MonoBehaviour
 
     void OnTriggerBom()//爆弾を踏んだ時
     {
-        Teleport();
+        //Teleport();
+        Death();
     }
 
     void Teleport()
     {
-        transform.position = new Vector3(-10, -2, 0);
+        transform.position = new Vector3(-7, -2, 0);
+    }
+
+    void Death()
+    {
+                isDead = true;
+        TimeLag();
+        Vector3 pos = transform.position;
+        pos.y += 3.0f;
+        pos.z = -2.0f;
+        transform.position = pos;
+        
+        Quaternion quaternion = transform.rotation;
+        quaternion = Quaternion.Euler(0, 0, 180);
+        transform.rotation = quaternion;
+
+    }
+
+
+    
+
+
+
+   
+
+    public void TimeLag()
+    {
+        Invoke("SceneChange", _delay);
+    }
+
+    public void SceneChange()
+    {
+        SceneManager.LoadScene(_loadScene);
     }
 }

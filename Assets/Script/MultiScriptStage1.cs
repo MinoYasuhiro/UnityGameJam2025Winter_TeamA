@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// プレイヤー操作・制御クラス
@@ -7,18 +9,23 @@ using UnityEngine;
 public class MultiScriptStage1 : MonoBehaviour
 {
     // オブジェクト・コンポーネント参照
-    private Rigidbody rigidbody;
+    private Rigidbody rb;
     private SpriteRenderer spriteRenderer;
+    private bool isDead = false;
+    [SerializeField] private string _loadScene;
+    public int _delay; //遅延させたい秒数
 
     // 移動関連変数
     [HideInInspector] public float xSpeed; // X方向移動速度
     [HideInInspector] public bool rightFacing; // 向いている方向(true.右向き false:左向き)
 
+
+
     // Start（オブジェクト有効化時に1度実行）
     void Start()
     {
         // コンポーネント参照取得
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         // 変数初期化
@@ -28,6 +35,11 @@ public class MultiScriptStage1 : MonoBehaviour
     // Update（1フレームごとに1度ずつ実行）
     void Update()
     {
+
+        if (isDead)
+        {
+            return;
+        }
         // 左右移動処理
         MoveUpdate();
 
@@ -78,7 +90,7 @@ public class MultiScriptStage1 : MonoBehaviour
         if (Input.GetKey(KeyCode.W) && isGrounded)
         {
             float jumpPower = 10.0f;
-            rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpPower);
+            GetComponent<Rigidbody>().velocity = new Vector2(GetComponent<Rigidbody>().velocity.x, jumpPower);
             isGrounded = false; // ジャンプしたら一旦離れる
         }
     }
@@ -88,12 +100,12 @@ public class MultiScriptStage1 : MonoBehaviour
     private void FixedUpdate()
     {
         // 移動速度ベクトルを現在値から取得
-        Vector2 velocity = rigidbody.velocity;
+        Vector2 velocity = GetComponent<Rigidbody>().velocity;
         // X方向の速度を入力から決定
         velocity.x = xSpeed;
 
         // 計算した移動速度ベクトルをRigidbodyに反映
-        rigidbody.velocity = velocity;
+        GetComponent<Rigidbody>().velocity = velocity;
     }
 
     private bool isGrounded = false;
@@ -127,7 +139,6 @@ public class MultiScriptStage1 : MonoBehaviour
         }
     }
 
-
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Bomb"))
@@ -138,11 +149,44 @@ public class MultiScriptStage1 : MonoBehaviour
 
     void OnTriggerBom()//爆弾を踏んだ時
     {
-        Teleport();
+        //Teleport();
+        Death();
     }
 
     void Teleport()
     {
-        transform.position = new Vector3(-10, -2, 0);
+        transform.position = new Vector3(-7, -2, 0);
+    }
+
+    void Death()
+    {
+        isDead = true;
+        TimeLag();
+        Vector3 pos = transform.position;
+        pos.y += 3.0f;
+        pos.z = -2.0f;
+        transform.position = pos;
+
+        Quaternion quaternion = transform.rotation;
+        quaternion = Quaternion.Euler(0, 0, 180);
+        transform.rotation = quaternion;
+
+    }
+
+
+
+
+
+
+
+
+    public void TimeLag()
+    {
+        Invoke("SceneChange", _delay);
+    }
+
+    public void SceneChange()
+    {
+        SceneManager.LoadScene(_loadScene);
     }
 }
