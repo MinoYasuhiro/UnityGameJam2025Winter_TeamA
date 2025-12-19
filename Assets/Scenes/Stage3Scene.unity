@@ -752,7 +752,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7919836906106083860, guid: dd4b7013b341ae7488ced39942d5bda1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.53
+      value: -8.96
       objectReference: {fileID: 0}
     - target: {fileID: 7919836906106083860, guid: dd4b7013b341ae7488ced39942d5bda1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -794,7 +794,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8848361035202008824, guid: dd4b7013b341ae7488ced39942d5bda1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -1603,6 +1604,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1262871635}
+    - target: {fileID: 3764642853197301199, guid: e87af88345059124d8f279d787facd44, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6779238763183277374, guid: e87af88345059124d8f279d787facd44, type: 3}
       propertyPath: m_Name
       value: UnlockDoor
@@ -2070,53 +2075,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b33a50bcceb91ee41b379aed34e0c0d8, type: 3}
---- !u!1 &1666722326 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6139163300274750582, guid: 0188f1c2df10720408cf70d7b5569aef, type: 3}
-  m_PrefabInstance: {fileID: 1916019983}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1666722327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1666722326}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcba12907c6f9d7499ae0730a2ea2267, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidbody: {fileID: 0}
-  spriteRenderer: {fileID: 0}
-  startPosition: {x: 0, y: 0, z: 0}
-  redCircle: {fileID: 524279901}
 --- !u!54 &1666722328 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 7074778185606504455, guid: 0188f1c2df10720408cf70d7b5569aef, type: 3}
   m_PrefabInstance: {fileID: 1916019983}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1806669211 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6139163300274750582, guid: 0188f1c2df10720408cf70d7b5569aef, type: 3}
-  m_PrefabInstance: {fileID: 2051241701}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1806669212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1806669211}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcba12907c6f9d7499ae0730a2ea2267, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidbody: {fileID: 0}
-  spriteRenderer: {fileID: 0}
-  startPosition: {x: 0, y: 0, z: 0}
-  redCircle: {fileID: 0}
 --- !u!54 &1806669213 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 7074778185606504455, guid: 0188f1c2df10720408cf70d7b5569aef, type: 3}
@@ -2153,6 +2116,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2288076489692206365, guid: f13079d9ef8abf1479fe348c3092181a, type: 3}
+      propertyPath: m_Constraints
+      value: 88
+      objectReference: {fileID: 0}
     - target: {fileID: 6358322994387051833, guid: f13079d9ef8abf1479fe348c3092181a, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -2167,7 +2134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6358322994387051833, guid: f13079d9ef8abf1479fe348c3092181a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.47
+      value: -7.67
       objectReference: {fileID: 0}
     - target: {fileID: 6358322994387051833, guid: f13079d9ef8abf1479fe348c3092181a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2401,10 +2368,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6139163300274750582, guid: 0188f1c2df10720408cf70d7b5569aef, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1666722327}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0188f1c2df10720408cf70d7b5569aef, type: 3}
 --- !u!1 &1927843684 stripped
 GameObject:
@@ -2495,10 +2459,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6139163300274750582, guid: 0188f1c2df10720408cf70d7b5569aef, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1806669212}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0188f1c2df10720408cf70d7b5569aef, type: 3}
 --- !u!1 &2089331053
 GameObject:
