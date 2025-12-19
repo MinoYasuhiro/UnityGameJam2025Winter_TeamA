@@ -13,6 +13,7 @@ public class PlayerController3 : MonoBehaviour
     private Vector3 startPosition;
 
     [SerializeField] private RedCircle redCircle;
+    [SerializeField] private ResetManager resetManager;
 
     // 移動関連変数
     [HideInInspector] public float xSpeed; // X方向移動速度
@@ -135,19 +136,13 @@ public class PlayerController3 : MonoBehaviour
     {
         if (redCircle == null) return;
         if (!redCircle.IsDanger()) return;
-        bool isMoving = xSpeed != 0.0f||
+        bool isMoving = xSpeed != 0.0f ||
         Mathf.Abs(rigidbody.velocity.y) > 0.01f;
 
-        if(isMoving)
+        if (isMoving)
         {
-            ResetPosition();
+            resetManager.ResetAll();
         }
-    }
-
-    private void ResetPosition()
-    {
-        rigidbody.velocity = Vector3.zero;
-        transform.position = startPosition;
     }
 
     void OnTriggerEnter(Collider other)
@@ -160,6 +155,6 @@ public class PlayerController3 : MonoBehaviour
 
     void OnTriggerBom()//爆弾を踏んだ時
     {
-        ResetPosition();
+        resetManager.ResetAll();
     }
 }
