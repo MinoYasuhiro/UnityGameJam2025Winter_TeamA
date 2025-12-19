@@ -7,7 +7,7 @@ public class ResetManager : MonoBehaviour
     [Header("Player")]
     [SerializeField] private Rigidbody playerRb;
 
-    [Header("Player2")]
+    [Header("Player")]
     [SerializeField] private Rigidbody player2Rb;
 
     [Header("Cubes")]
