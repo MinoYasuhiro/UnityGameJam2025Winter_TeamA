@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// プレイヤー操作・制御クラス
 /// </summary>
-public class PlayerController3 : MonoBehaviour
+public class PlayerController3 : MonoBehaviour,IPushPlayerScript
 {
     // オブジェクト・コンポーネント参照
     private Rigidbody rigidbody;
@@ -18,6 +18,14 @@ public class PlayerController3 : MonoBehaviour
     // 移動関連変数
     [HideInInspector] public float xSpeed; // X方向移動速度
     [HideInInspector] public bool rightFacing; // 向いている方向(true.右向き false:左向き)
+
+    public Vector3 MoveDirection
+    {
+        get
+        {
+            return new Vector3(xSpeed, 0f, 0f).normalized;
+        }
+    }
 
     // Start（オブジェクト有効化時に1度実行）
     void Start()
