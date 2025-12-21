@@ -752,11 +752,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7919836906106083860, guid: dd4b7013b341ae7488ced39942d5bda1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.96
+      value: -1.62
       objectReference: {fileID: 0}
     - target: {fileID: 7919836906106083860, guid: dd4b7013b341ae7488ced39942d5bda1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.769995
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7919836906106083860, guid: dd4b7013b341ae7488ced39942d5bda1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1306,6 +1306,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1475253549}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &899464198 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6139163300274750582, guid: 0188f1c2df10720408cf70d7b5569aef, type: 3}
+  m_PrefabInstance: {fileID: 1916019983}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &943746193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2083,6 +2088,42 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 7074778185606504455, guid: 0188f1c2df10720408cf70d7b5569aef, type: 3}
   m_PrefabInstance: {fileID: 1916019983}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1666722329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899464198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b94b0edfb2f3e4c91bcb112f8a4040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredPlayers: 2
+  moveSpeed: 2
+  supportRange: 1
+--- !u!65 &1666722334
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899464198}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1, y: 1.1, z: 1.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1806669213 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 7074778185606504455, guid: 0188f1c2df10720408cf70d7b5569aef, type: 3}
@@ -2137,11 +2178,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6358322994387051833, guid: f13079d9ef8abf1479fe348c3092181a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.67
+      value: -3.11
       objectReference: {fileID: 0}
     - target: {fileID: 6358322994387051833, guid: f13079d9ef8abf1479fe348c3092181a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.769995
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 6358322994387051833, guid: f13079d9ef8abf1479fe348c3092181a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2315,9 +2356,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 787683377213268516, guid: 0188f1c2df10720408cf70d7b5569aef, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5040154481312301622, guid: 0188f1c2df10720408cf70d7b5569aef, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e58a3852eca19004ab42b9f3b40c6887, type: 2}
     - target: {fileID: 6139163300274750582, guid: 0188f1c2df10720408cf70d7b5569aef, type: 3}
       propertyPath: m_Name
       value: PushCube
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074778185606504455, guid: 0188f1c2df10720408cf70d7b5569aef, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074778185606504455, guid: 0188f1c2df10720408cf70d7b5569aef, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8476029772962606494, guid: 0188f1c2df10720408cf70d7b5569aef, type: 3}
       propertyPath: m_LocalScale.x
@@ -2370,7 +2427,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6139163300274750582, guid: 0188f1c2df10720408cf70d7b5569aef, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 1666722334}
+    - targetCorrespondingSourceObject: {fileID: 6139163300274750582, guid: 0188f1c2df10720408cf70d7b5569aef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1666722329}
   m_SourcePrefab: {fileID: 100100000, guid: 0188f1c2df10720408cf70d7b5569aef, type: 3}
 --- !u!1 &1927843684 stripped
 GameObject:
@@ -2452,6 +2515,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5040154481312301622, guid: 0188f1c2df10720408cf70d7b5569aef, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d5e4111e6b6ff8243867250b08725584, type: 2}
     - target: {fileID: 6139163300274750582, guid: 0188f1c2df10720408cf70d7b5569aef, type: 3}
       propertyPath: m_Name
       value: PushCube (1)
