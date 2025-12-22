@@ -1666,6 +1666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSpeed: 0
   rightFacing: 0
+  jumpSE: {fileID: 8300000, guid: 1ab44371118f0254f9801857dddd941b, type: 3}
 --- !u!1 &1702818085
 GameObject:
   m_ObjectHideFlags: 0
@@ -2507,6 +2508,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8848361035202008824, guid: dd4b7013b341ae7488ced39942d5bda1, type: 3}
+      propertyPath: jumpSE
+      value: 
+      objectReference: {fileID: 8300000, guid: 1ab44371118f0254f9801857dddd941b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

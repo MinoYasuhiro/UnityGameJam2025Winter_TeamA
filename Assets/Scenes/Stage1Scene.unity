@@ -334,6 +334,7 @@ MonoBehaviour:
   _loadScene: LobyScene
   _delay: 1
   bombEffectPrefab: {fileID: 1605955755277029280, guid: 383b77bd9181cef4b96670eed049b8f6, type: 3}
+  jumpSE: {fileID: 8300000, guid: 1ab44371118f0254f9801857dddd941b, type: 3}
   xSpeed: 0
   rightFacing: 0
 --- !u!114 &166268405
@@ -1817,6 +1818,7 @@ MonoBehaviour:
   _loadScene: LobyScene
   _delay: 1
   bombEffectPrefab: {fileID: 1605955755277029280, guid: 383b77bd9181cef4b96670eed049b8f6, type: 3}
+  jumpSE: {fileID: 8300000, guid: 1ab44371118f0254f9801857dddd941b, type: 3}
   xSpeed: 0
   rightFacing: 0
 --- !u!82 &1611012859

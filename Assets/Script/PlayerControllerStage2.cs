@@ -9,9 +9,12 @@ public class PlayerCountrollerStage2 : MonoBehaviour
     private Rigidbody rigidbody;
     private SpriteRenderer spriteRenderer;
 
+    private AudioSource audioSource;
+
     // 移動関連変数
     [HideInInspector] public float xSpeed; // X方向移動速度
     [HideInInspector] public bool rightFacing; // 向いている方向(true.右向き false:左向き)
+    [SerializeField] private AudioClip jumpSE;
 
     // Start（オブジェクト有効化時に1度実行）
     void Start()
@@ -19,6 +22,13 @@ public class PlayerCountrollerStage2 : MonoBehaviour
         // コンポーネント参照取得
         rigidbody = GetComponent<Rigidbody>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.spatialBlend = 0f;
+            audioSource.playOnAwake = false;
+        }
 
         // 変数初期化
         rightFacing = true; // 最初は右向き
@@ -79,6 +89,11 @@ public class PlayerCountrollerStage2 : MonoBehaviour
             float jumpPower = 10.0f;
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpPower);
             isGrounded = false; // ジャンプしたら一旦離れる
+
+            if (jumpSE != null)
+            {
+                audioSource.PlayOneShot(jumpSE);
+            }
         }
     }
 

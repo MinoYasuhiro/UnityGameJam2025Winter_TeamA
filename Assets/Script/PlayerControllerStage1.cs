@@ -14,6 +14,8 @@ public class PlayerControllerStage1 : MonoBehaviour
     [SerializeField] private string _loadScene;
     public int _delay; //遅延させたい秒数
     [SerializeField] private GameObject bombEffectPrefab;
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip jumpSE;
 
     // 移動関連変数
     [HideInInspector] public float xSpeed; // X方向移動速度
@@ -27,6 +29,13 @@ public class PlayerControllerStage1 : MonoBehaviour
         // コンポーネント参照取得
         rb = GetComponent<Rigidbody>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.spatialBlend = 0f;
+            audioSource.playOnAwake = false;
+        }
 
         // 変数初期化
         rightFacing = true; // 最初は右向き
@@ -92,6 +101,11 @@ public class PlayerControllerStage1 : MonoBehaviour
             float jumpPower = 10.0f;
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             isGrounded = false; // ジャンプしたら一旦離れる
+
+            if (jumpSE != null)
+            {
+                audioSource.PlayOneShot(jumpSE);
+            }
         }
     }
 
