@@ -11,9 +11,11 @@ public class Stage3Mult : MonoBehaviour,IPushPlayerScript
     private SpriteRenderer spriteRenderer;
 
     private Vector3 startPosition;
+    private AudioSource audioSource;
 
     [SerializeField] private RedCircle redCircle;
     [SerializeField] private ResetManager resetManager;
+    [SerializeField] private AudioClip jumpSE;
 
     // 移動関連変数
     [HideInInspector] public float xSpeed; // X方向移動速度
@@ -33,6 +35,13 @@ public class Stage3Mult : MonoBehaviour,IPushPlayerScript
         // コンポーネント参照取得
         rigidbody = GetComponent<Rigidbody>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.spatialBlend = 0f;
+            audioSource.playOnAwake = false;
+        }
 
         // 変数初期化
         rightFacing = true; // 最初は右向き
@@ -91,11 +100,16 @@ public class Stage3Mult : MonoBehaviour,IPushPlayerScript
 	/// </summary>
 	private void JumpUpdate()
     {
-        if (Input.GetKey(KeyCode.W) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             float jumpPower = 9.4f;
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpPower);
             isGrounded = false; // ジャンプしたら一旦離れる
+
+            if (jumpSE != null)
+            {
+                audioSource.PlayOneShot(jumpSE);
+            }
         }
     }
 
