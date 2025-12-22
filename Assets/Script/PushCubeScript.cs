@@ -11,10 +11,14 @@ public class PushCubeScript : MonoBehaviour
 
     private List<IPushPlayerScript> touchingPlayers = new List<IPushPlayerScript>();
     private IPushPlayerScript[] allPlayers;
+    private Rigidbody rb;
+    private Vector3 moveDir;
+    private bool shouldMove;
 
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponentInParent<Rigidbody>();
         allPlayers = FindObjectsOfType<MonoBehaviour>().OfType<IPushPlayerScript>().ToArray();
     }
 
@@ -39,6 +43,7 @@ public class PushCubeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        shouldMove = false;
         foreach(IPushPlayerScript frontPlayer in touchingPlayers)
         {
             Vector3 frontMoveDir = frontPlayer.MoveDirection;
@@ -66,10 +71,26 @@ public class PushCubeScript : MonoBehaviour
             }
             if(pushCount>=requiredPlayers)
             {
-                Vector3 moveDir = new Vector3(Mathf.Sign(frontMoveDir.x), 0f, 0f);
-                transform.Translate(moveDir * moveSpeed * Time.deltaTime);
+                moveDir = new Vector3(Mathf.Sign(frontMoveDir.x), 0f, 0f);
+                shouldMove = true;
                 break;
             }
         }
+    }
+
+    void FixedUpdate()
+    {
+        if (!shouldMove) return;
+        if (rb == null) return;
+
+        Vector3 dir = new Vector3(Mathf.Sign(moveDir.x), 0f, 0f);
+        Vector3 step = dir * moveSpeed * Time.fixedDeltaTime;
+
+        if(rb.SweepTest(dir,out RaycastHit hit,step.magnitude,QueryTriggerInteraction.Ignore))
+        {
+            return;
+        }
+
+        rb.MovePosition(rb.position + step);
     }
 }
